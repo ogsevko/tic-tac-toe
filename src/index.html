@@ -4,10 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.scss">
-    <script src="main.js"></script>
-    <title>FE Template</title>
+    <script defer src="main.js"></script>
+    <title>Tic-Tac-Toe</title>
   </head>
   <body>
-    <h1>FE Template</h1>
+    <header class="header">
+      <h1 class="header__title">
+        Tic-Tac-Toe
+      </h1>
+    </header>
+
+    <main>
+      <table class="board">
+        <tr class="board__row">
+          <td class="board__cell" id="0"></td>
+          <td class="board__cell" id="1"></td>
+          <td class="board__cell" id="2"></td>
+        </tr>
+        <tr class="board__row">
+          <td class="board__cell" id="3"></td>
+          <td class="board__cell" id="4"></td>
+          <td class="board__cell" id="5"></td>
+        </tr>
+        <tr class="board__row">
+          <td class="board__cell" id="6"></td>
+          <td class="board__cell" id="7"></td>
+          <td class="board__cell" id="8"></td>
+        </tr>
+      </table>
+
+      <div class="winner">
+        <div class="winner__name"></div>
+      </div>
+
+      <button
+        class="start"
+        onclick="startGame()"
+      >
+        Replay
+      </button>
+    </main>
   </body>
 </html>
