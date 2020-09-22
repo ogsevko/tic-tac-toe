@@ -1,0 +1,32 @@
+.board {
+  border-collapse: collapse;
+  margin: 0 auto;
+
+  &__cell {
+    border: 2px solid $mainColor;
+    height: 100px;
+    width: 100px;
+
+    text-align: center;
+    vertical-align: middle;
+    font-size: 70px;
+
+    cursor: pointer;
+  }
+
+  &__row:first-child .board__cell {
+    border-top: 0;
+  }
+
+  &__row:last-child .board__cell {
+    border-bottom: 0;
+  }
+
+  &__row .board__cell:first-child {
+    border-left: 0;
+  }
+
+  &__row .board__cell:last-child {
+    border-right: 0;
+  }
+}
