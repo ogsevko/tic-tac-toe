@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 let originalBoard;
 const humanPlayer = 'O';
 const aiPlayer = 'X';
@@ -33,7 +32,15 @@ function startGame() {
 }
 
 function turnClick(square) {
-  turn(square.target.id, humanPlayer);
+  if (typeof originalBoard[square.target.id] === 'number') {
+    turn(square.target.id, humanPlayer);
+
+    setTimeout(() => {
+      if (!checkTie()) {
+        turn(bestSpot(), aiPlayer);
+      }
+    }, 100);
+  }
 }
 
 function turn(squareId, player) {
@@ -74,4 +81,33 @@ function gameOver(gameWon) {
   for (let i = 0; i < cells.length; i++) {
     cells[i].removeEventListener('click', turnClick, false);
   }
+
+  declareWinner(gameWon.player === humanPlayer ? 'You win!' : 'You lose!');
+}
+
+function declareWinner(winner) {
+  document.querySelector('.winner').style.display = 'block';
+  document.querySelector('.winner__name').innerText = winner;
+}
+
+function emptySquares() {
+  return originalBoard.filter(s => typeof s === 'number');
+}
+
+function bestSpot() {
+  return emptySquares()[0];
+}
+
+function checkTie() {
+  if (emptySquares().length === 0) {
+    for (let i = 0; i < cells.length; i++) {
+      cells[i].style.backgroundColor = 'green';
+      cells[i].removeEventListener('click', turnClick, false);
+    }
+    declareWinner('It\'s a tie');
+
+    return true;
+  }
+
+  return false;
 }
