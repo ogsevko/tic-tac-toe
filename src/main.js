@@ -39,4 +39,39 @@ function turnClick(square) {
 function turn(squareId, player) {
   originalBoard[squareId] = player;
   document.getElementById(squareId).innerText = player;
+
+  const gameWon = checkWin(originalBoard, player);
+
+  if (gameWon) {
+    gameOver(gameWon);
+  }
+}
+
+function checkWin(board, player) {
+  const plays = board.reduce((a, e, i) => (
+    (e === player) ? a.concat(i) : a), []);
+  let gameWon = null;
+
+  for (const [index, win] of winningCombinations.entries()) {
+    if (win.every(elem => plays.indexOf(elem) > -1)) {
+      gameWon = {
+        index: index,
+        player: player,
+      };
+      break;
+    }
+  }
+
+  return gameWon;
+}
+
+function gameOver(gameWon) {
+  for (const index of winningCombinations[gameWon.index]) {
+    document.getElementById(index).style.backgroundColor
+      = gameWon.player === humanPlayer ? 'blue' : 'red';
+  }
+
+  for (let i = 0; i < cells.length; i++) {
+    cells[i].removeEventListener('click', turnClick, false);
+  }
 }
