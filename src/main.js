@@ -13,7 +13,7 @@ const winningCombinations = [
 ];
 
 const cells = document.querySelectorAll('.board__cell');
-const replay = document.querySelector('.start');
+const replay = document.querySelector('.replay');
 
 replay.addEventListener('click', startGame);
 

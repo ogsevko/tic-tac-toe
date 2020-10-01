@@ -1,7 +1,9 @@
 @import "./variables.scss";
+@import "./styles/main.scss";
 @import "./styles/header.scss";
 @import "./styles/board.scss";
 @import "./styles/winner.scss";
+@import "./styles/replay.scss";
 
 html {
   font-family: Arial, Helvetica, sans-serif;
